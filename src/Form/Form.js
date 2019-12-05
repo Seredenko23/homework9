@@ -4,6 +4,7 @@ import update from 'immutability-helper';
 
 import './Form.css';
 import Select from "./part/Select/Select";
+import RadioButtons from "./part/RadioButtons/RadioButtons";
 
 
 class Form extends Component {
@@ -99,6 +100,8 @@ class Form extends Component {
                     placeholder='Choose region'
                     value={this.state.newUser.region}
                     options={this.state.regionOption}/>
+                    <RadioButtons
+                        handler={this.handler}/>
             </form>
         );
     }
