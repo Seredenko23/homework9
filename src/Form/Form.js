@@ -3,13 +3,12 @@ import Input from "./part/Input/Input";
 import update from 'immutability-helper';
 
 import './Form.css';
+import Select from "./part/Select/Select";
 
 
 class Form extends Component {
     constructor(props) {
         super(props);
-        const genderOption = ['Male', 'Female', 'Other'];
-        const regionOption = ['1', '2', '3'];
 
         this.state = {
             newUser: {
@@ -25,19 +24,28 @@ class Form extends Component {
                 message: '',
                 photo: null,
             },
+
+            genderOption: ['Male', 'Female', 'Other'],
+            regionOption: ['1', '2', '3'],
+
         };
     }
 
     handler = (e) => {
         const {name, value} = e.target;
         const newState = update(this.state, {
-                newUser: {
-                    [name] : {$set :value}
-                }
+            newUser: {
+                [name] : {$set :value}
             }
-        )
+        });
         this.setState(newState);
     };
+
+    handleSubmit = (event) => {
+        console.log(this.state.newUser)
+        event.preventDefault();
+    }
+
 
     render() {
         return (
@@ -84,6 +92,13 @@ class Form extends Component {
                     placeholder='Enter your password again'
                     value={this.state.newUser.repeatPassword}
                     type='text'/>
+                <Select
+                    name='region'
+                    title='Choose your region'
+                    handler={this.handler}
+                    placeholder='Choose region'
+                    value={this.state.newUser.region}
+                    options={this.state.regionOption}/>
             </form>
         );
     }
