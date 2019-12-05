@@ -5,6 +5,8 @@ import update from 'immutability-helper';
 import './Form.css';
 import Select from "./part/Select/Select";
 import RadioButtons from "./part/RadioButtons/RadioButtons";
+import Checkbox from "./part/Checkbox/Checkbox";
+import Textarea from "./part/Textarea/Textarea";
 
 
 class Form extends Component {
@@ -33,12 +35,22 @@ class Form extends Component {
     }
 
     handler = (e) => {
-        const {name, value} = e.target;
-        const newState = update(this.state, {
-            newUser: {
-                [name] : {$set :value}
-            }
-        });
+        let newState;
+        if(e.target.type === 'checkbox') {
+            const {name, checked} = e.target;
+            newState = update(this.state, {
+                newUser: {
+                    [name] : {$set :checked}
+                }
+            });
+        } else {
+            const {name, value} = e.target;
+            newState = update(this.state, {
+                newUser: {
+                    [name] : {$set :value}
+                }
+            });
+        }
         this.setState(newState);
     };
 
@@ -100,8 +112,18 @@ class Form extends Component {
                     placeholder='Choose region'
                     value={this.state.newUser.region}
                     options={this.state.regionOption}/>
-                    <RadioButtons
-                        handler={this.handler}/>
+                <RadioButtons
+                    handler={this.handler}/>
+                <Checkbox
+                    name='sendPromo'
+                    handler={this.handler}
+                    check={this.state.newUser.sendPromo}
+                    title={'Do ypu want to subscribe on our promo?'}/>
+                <Textarea
+                    name='message'
+                    handler={this.handler}
+                    value={this.state.newUser.message}
+                    placeholder='Enter your message here'/>
             </form>
         );
     }
