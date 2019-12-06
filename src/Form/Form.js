@@ -7,6 +7,7 @@ import Select from "./part/Select/Select";
 import RadioButtons from "./part/RadioButtons/RadioButtons";
 import Checkbox from "./part/Checkbox/Checkbox";
 import Textarea from "./part/Textarea/Textarea";
+import FileInput from "./part/FileInput/FileInput";
 
 
 class Form extends Component {
@@ -25,7 +26,7 @@ class Form extends Component {
                 gender: '',
                 sendPromo: false,
                 message: '',
-                photo: null,
+                photo: undefined,
             },
 
             genderOption: ['Male', 'Female', 'Other'],
@@ -43,6 +44,13 @@ class Form extends Component {
                     [name] : {$set :checked}
                 }
             });
+        } else if(e.target.type === 'file') {
+            const {name, files} = e.target;
+            newState = update(this.state, {
+                newUser: {
+                    [name] : {$set :files[0]}
+                }
+            });
         } else {
             const {name, value} = e.target;
             newState = update(this.state, {
@@ -54,15 +62,15 @@ class Form extends Component {
         this.setState(newState);
     };
 
-    handleSubmit = (event) => {
-        console.log(this.state.newUser)
-        event.preventDefault();
-    }
+    handleSubmit = (e) => {
+        console.log(this.state.newUser);
+        e.preventDefault();
+    };
 
 
     render() {
         return (
-            <form className='registration-form'>
+            <form className='registration-form' onSubmit={this.handleSubmit}>
                 <Input
                     name='firstName'
                     title='First name'
@@ -118,12 +126,19 @@ class Form extends Component {
                     name='sendPromo'
                     handler={this.handler}
                     check={this.state.newUser.sendPromo}
-                    title={'Do ypu want to subscribe on our promo?'}/>
+                    title={'Do you want to subscribe on our promo?'}/>
                 <Textarea
                     name='message'
                     handler={this.handler}
                     value={this.state.newUser.message}
                     placeholder='Enter your message here'/>
+                <FileInput
+                    name='photo'
+                    title='Add your photo'
+                    handler={this.handler}
+                    placeholder='Choose photo'
+                    value={this.state.newUser.photo}/>
+                <button type='submit'>Submit</button>
             </form>
         );
     }

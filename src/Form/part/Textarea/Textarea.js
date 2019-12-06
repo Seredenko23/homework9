@@ -11,7 +11,6 @@ class Textarea extends Component {
                 onChange={handler}
                 value={value}
                 placeholder={placeholder}>
-
             </textarea>
         );
     }

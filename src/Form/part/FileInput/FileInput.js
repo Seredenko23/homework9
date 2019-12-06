@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
-import './Input.css'
+import './FileInput.css'
 
-class Input extends Component {
-    constructor (props) {
-        super(props)
+class FileInput extends Component {
+    constructor(props) {
+        super(props);
+        this.fileInput = React.createRef();
     }
     render() {
-        const {name, title, handler, placeholder, value, type} = this.props
+        const {name, title, handler, placeholder} = this.props
         return (
             <div className='input-wrapper'>
                 <label className='registration-label'
                        htmlFor={name}>{title}</label>
-                <input required
-                    className='registration-input'
+                <input className='registration-input'
+                       ref={this.fileInput}
                        name={name}
-                       value={value}
                        onChange={handler}
                        placeholder={placeholder}
-                       type={type}/>
+                       type='file'/>
             </div>
         );
     }
 }
 
-export default Input;
+export default FileInput;
