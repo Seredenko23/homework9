@@ -6,7 +6,7 @@ class Select extends Component {
         super(props)
     }
     render() {
-        let {name, title, handler, placeholder, options, value} = this.props
+        let {name, title, handler, placeholder, options, value, error, errText} = this.props
         let arrayOptions = options.map(el => {
             return (
                 <option
@@ -19,13 +19,16 @@ class Select extends Component {
         return (
             <div className='select-wrapper'>
                 <label htmlFor={name}>{title}</label>
-                <select name={name}
+                <select className={error ? 'error select' : 'select'} name={name}
                         id={name}
                         value={value}
                         onChange={handler}>
                     <option value="" disabled>{placeholder}</option>
                     {arrayOptions}
                 </select>
+                {error && (
+                    <p className='error-description'>{errText}</p>
+                )}
             </div>
         );
     }

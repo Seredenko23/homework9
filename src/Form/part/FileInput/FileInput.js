@@ -7,17 +7,20 @@ class FileInput extends Component {
         this.fileInput = React.createRef();
     }
     render() {
-        const {name, title, handler, placeholder} = this.props
+        const {name, title, handler, placeholder, error, errText} = this.props
         return (
             <div className='input-wrapper'>
                 <label className='registration-label'
                        htmlFor={name}>{title}</label>
-                <input className='registration-input'
+                <input className={error ? 'error registration-input' : 'registration-input'}
                        ref={this.fileInput}
                        name={name}
                        onChange={handler}
                        placeholder={placeholder}
                        type='file'/>
+                {error && (
+                    <p className='error-description'>{errText}</p>
+                )}
             </div>
         );
     }
