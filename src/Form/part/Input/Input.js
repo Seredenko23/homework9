@@ -18,7 +18,7 @@ class Input extends Component {
     render() {
         const {name, title, handler, placeholder, value, type, error, errText} = this.props
         return (
-            <div className='input-wrapper'>
+            <div className={type === 'radio'? 'radio-wrapper' : 'input-wrapper'}>
                 <label className='registration-label'
                        htmlFor={name}>{title}</label>
                 <input className={error && this.state.touched ? 'error registration-input' : 'registration-input'}

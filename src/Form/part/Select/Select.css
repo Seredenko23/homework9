@@ -1,0 +1,12 @@
+.select {
+    margin-top: 12px;
+    height: 26px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+
+.select:focus {
+    outline: none;
+    border-bottom: 1px solid green;
+}

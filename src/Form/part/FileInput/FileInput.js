@@ -22,7 +22,7 @@ class FileInput extends Component {
             <div className='input-wrapper'>
                 <label className='registration-label'
                        htmlFor={name}>{title}</label>
-                <input className={error && this.state.touched ? 'error registration-input' : 'registration-input'}
+                <input className={error && this.state.touched ? 'error file-input' : 'file-input'}
                        ref={this.fileInput}
                        name={name}
                        onChange={handler}

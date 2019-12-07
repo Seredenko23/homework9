@@ -1,0 +1,24 @@
+.toast {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    color: white;
+    padding: 0 30px;
+    font-size: 1.5em;
+    height: 60px;
+    border-radius: 3px;
+    background-color: #ebebeb;
+}
+
+.success {
+    background-color: green;
+}
+
+.danger {
+    background-color: orange;
+}
+
+.fail {
+    background-color: darkred;
+}

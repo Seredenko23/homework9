@@ -9,6 +9,7 @@ import RadioButtons from "./part/RadioButtons/RadioButtons";
 import Checkbox from "./part/Checkbox/Checkbox";
 import Textarea from "./part/Textarea/Textarea";
 import FileInput from "./part/FileInput/FileInput";
+import Toast from "../Toast/Toast";
 
 class Form extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ class Form extends Component {
                 photo: undefined,
             },
 
+            submitSucceed: false,
             genderOption: ['Male', 'Female', 'Other'],
             regionOption: ['1', '2', '3'],
 
@@ -64,16 +66,28 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         console.log(this.state.newUser);
-        console.log(validate(this.state.newUser));
+        this.setState({
+            submitSucceed: true
+        })
         e.preventDefault();
     };
 
+    unmount = () => {
+        this.setState({
+            submitSucceed: false,
+        })
+    };
 
     render() {
         const errors = validate(this.state.newUser);
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         return (
             <form className='registration-form' onSubmit={this.handleSubmit}>
+                {(this.state.submitSucceed &&
+                    <Toast status='success'
+                           unmount={this.unmount}
+                           description='Registration succeed'/>
+                )}
                 <Input
                     name='firstName'
                     title='First name'
@@ -146,7 +160,7 @@ class Form extends Component {
                     name='sendPromo'
                     handler={this.handler}
                     check={this.state.newUser.sendPromo}
-                    title={'Do you want to subscribe on our promo?'}/>
+                    title={'Do you want to subscribe to our promo?'}/>
                 <Textarea
                     name='message'
                     handler={this.handler}

@@ -16,7 +16,7 @@ class Select extends Component {
     };
 
     render() {
-        let {name, title, handler, placeholder, options, value, error, errText} = this.props
+        let {name, handler, placeholder, options, value, error, errText} = this.props
         let arrayOptions = options.map(el => {
             return (
                 <option
@@ -28,7 +28,7 @@ class Select extends Component {
         })
         return (
             <div className='select-wrapper'>
-                <label htmlFor={name}>{title}</label>
+                <label htmlFor={name}/>
                 <select className={error && this.state.touched ? 'error select' : 'select'} name={name}
                         id={name}
                         value={value}
