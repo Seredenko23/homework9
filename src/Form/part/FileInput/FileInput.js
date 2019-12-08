@@ -7,6 +7,7 @@ class FileInput extends Component {
         this.fileInput = React.createRef();
         this.state = {
             touched: false,
+            title:'Choose file...'
         }
     }
 
@@ -16,16 +17,25 @@ class FileInput extends Component {
         })
     };
 
+    changeTitle = (e) => {
+        const fileName = e.target.value.split( '\\' ).pop();
+        this.setState({
+            title: fileName,
+        })
+    }
+
     render() {
-        const {name, title, handler, placeholder, error, errText} = this.props
+        const {name, id , handler, placeholder, error, errText} = this.props
         return (
             <div className='input-wrapper'>
-                <label className='registration-label'
-                       htmlFor={name}>{title}</label>
-                <input className={error && this.state.touched ? 'error file-input' : 'file-input'}
+                <label className='fileinput-label'
+                       htmlFor={name}>{this.state.title}</label>
+                <input className='file-input'
                        ref={this.fileInput}
+                       id={id}
                        name={name}
-                       onChange={handler}
+                       onChange={(e) => {this.changeTitle(e); handler(e);}}
+                       onBlur={this.touch}
                        placeholder={placeholder}
                        type='file'/>
                 {(error && this.state.touched) && (

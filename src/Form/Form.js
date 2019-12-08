@@ -133,7 +133,7 @@ class Form extends Component {
                     handler={this.handler}
                     placeholder='Enter your password'
                     value={this.state.newUser.password}
-                    type='text'
+                    type='password'
                     error={errors.password}
                     errText={`Password to short!`}/>
                 <Input
@@ -142,7 +142,7 @@ class Form extends Component {
                     handler={this.handler}
                     placeholder='Enter your password again'
                     value={this.state.newUser.repeatPassword}
-                    type='text'
+                    type='password'
                     error={errors.repeatPassword}
                     errText={`Passwords aren't same`}/>
                 <Select
@@ -157,6 +157,7 @@ class Form extends Component {
                 <RadioButtons
                     handler={this.handler}/>
                 <Checkbox
+                    id='sendPromo'
                     name='sendPromo'
                     handler={this.handler}
                     check={this.state.newUser.sendPromo}
@@ -169,13 +170,14 @@ class Form extends Component {
                 />
                 <FileInput
                     name='photo'
+                    id='photo'
                     title='Add your photo'
                     handler={this.handler}
                     placeholder='Choose photo'
                     value={this.state.newUser.photo}
                     error={errors.photo}
                     errText={`You need to choose file, also this must be jpg or png`}/>
-                <button
+                <button className='submit-btn'
                     disabled={isDisabled}
                     type='submit'>
                     Submit

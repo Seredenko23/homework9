@@ -1,17 +1,19 @@
 .input-wrapper {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 2px 0;
 }
 
-.radiogit-wrapper {
+.radio-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 2px 0;
 }
 
-.registration-input {
+.registration-input[type='text'], .registration-input[type='password'] {
+    width: 100%;
     height: 26px;
     border: none;
     border-bottom: 1px solid grey;
@@ -19,7 +21,7 @@
 
 .registration-input:focus {
     outline: none;
-    border-bottom: 1px solid green;
+    border-bottom: 1px solid #3443ad;
 }
 
 .error-description {

@@ -8,5 +8,5 @@
 
 .select:focus {
     outline: none;
-    border-bottom: 1px solid green;
+    border-bottom: 1px solid #3e51d3;
 }
