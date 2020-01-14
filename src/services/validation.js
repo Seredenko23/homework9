@@ -7,7 +7,7 @@ function validate(formProp) {
         secondName: secondName.length === 0 || !checkStr(secondName),
         userName: userName.length === 0 || !checkStr(userName),
         email: email.length === 0 || !validateEmail(email),
-        password: password.length <= 0,
+        password: password.length <= 10,
         repeatPassword: repeatPassword !== password,
         region: region.length === 0,
         photo: !photo || !validatePhoto(photo),
@@ -15,9 +15,8 @@ function validate(formProp) {
 }
 
 function validateEmail(email) {
-    const possibleEmails = ['gmail.com', 'ukr.net', '@yandex.ru'];
-    const emailParts = email.split('@');
-    return possibleEmails.includes(emailParts[emailParts.length-1])
+    const regExp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regExp.test(email);
 }
 
 function validatePhoto(photo) {
